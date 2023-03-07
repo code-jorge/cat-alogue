@@ -1,0 +1,70 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.spinner {
+  position: relative;
+  width: 180px;
+  height: 80px;
+}
+
+.ball {
+  position: absolute;
+  top: 22px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid black;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.ball:nth-child(1) {
+  left: 8px;
+  animation: ball1 0.6s infinite;
+}
+
+.ball:nth-child(2) {
+  left: 20px;
+  animation: ball2 0.6s infinite;
+}
+
+.ball:nth-child(3) {
+  left: 80px;
+  animation: ball2 0.6s infinite;
+}
+
+.ball:nth-child(4) {
+  left: 140px;
+  animation: ball3 0.6s infinite;
+}
+
+@keyframes ball1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ball2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 0);
+  }
+}
+
+@keyframes ball3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
