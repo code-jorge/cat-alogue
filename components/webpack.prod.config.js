@@ -4,7 +4,7 @@ const deps = require("./package.json").dependencies;
 
 module.exports = {
   output: {
-    publicPath: "https://cat-components.netlify.app",
+    publicPath: "https://cat-components.netlify.app/",
   },
 
   resolve: {
