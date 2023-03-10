@@ -3,9 +3,11 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const deps = require("./package.json").dependencies;
 
+const isProduction = process.env.NODE_ENV === "production";
+
 module.exports = {
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath: isProduction ? "https://cat-alogue.netlify.app" : "http://localhost:8080/",
   },
 
   resolve: {
@@ -63,7 +65,7 @@ module.exports = {
       name: "cat-alogue",
       filename: "remoteEntry.js",
       remotes: {
-        components: "components@http://localhost:8081/loader.js",
+        components: isProduction ? "components@http://cat-components.netlify.app/loader.js" : "components@http://localhost:8081/loader.js",
       },
       exposes: {},
       shared: {

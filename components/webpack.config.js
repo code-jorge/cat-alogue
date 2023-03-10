@@ -2,9 +2,11 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 
 const deps = require("./package.json").dependencies;
 
+const isProduction = process.env.NODE_ENV === "production";
+
 module.exports = {
   output: {
-    publicPath: "http://localhost:8081/",
+    publicPath: isProduction ? "https://cat-components.netlify.app" : "http://localhost:8080/",
   },
 
   resolve: {
