@@ -1,12 +1,11 @@
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
 
-const isProduction = process.env.NODE_ENV === "production";
-
 module.exports = {
   output: {
-    publicPath: isProduction ? "https://cat-components.netlify.app" : "http://localhost:8080/",
+    publicPath: "https://cat-alogue.netlify.app",
   },
 
   resolve: {
@@ -14,12 +13,16 @@ module.exports = {
   },
 
   devServer: {
-    port: 8081,
+    port: 8080,
     historyApiFallback: true,
   },
 
   module: {
     rules: [
+      {
+        test: /\.(png|jpg|gif)$/i,
+        type: 'asset/resource'
+      },
       {
         test: /\.m?js/,
         type: "javascript/auto",
@@ -41,6 +44,11 @@ module.exports = {
         ]
       },
       {
+        test: /\.css$/i,
+        exclude: /\.module\.css$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -52,13 +60,12 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "components",
-      filename: "loader.js",
-      remotes: {},
-      exposes: {
-        './Gallery': './src/components/Gallery/Gallery',
-        './Image': './src/components/Image/Image',
+      name: "cat-alogue",
+      filename: "remoteEntry.js",
+      remotes: {
+        components: "components@http://cat-components.netlify.app/loader.js",
       },
+      exposes: {},
       shared: {
         ...deps,
         react: {
@@ -70,6 +77,10 @@ module.exports = {
           requiredVersion: deps["react-dom"],
         },
       },
-    })
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      favicon: "./src/favicon.png"
+    }),
   ],
 };
