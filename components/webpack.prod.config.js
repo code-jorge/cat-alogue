@@ -68,6 +68,10 @@ module.exports = {
           requiredVersion: deps["react-dom"],
         },
       },
-    })
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      favicon: "./src/favicon.png"
+    }),
   ],
 };
