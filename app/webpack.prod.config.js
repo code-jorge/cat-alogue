@@ -63,7 +63,7 @@ module.exports = {
       name: "cat-alogue",
       filename: "remoteEntry.js",
       remotes: {
-        components: "components@http://cat-components.netlify.app/loader.js",
+        components: "components@https://cat-components.netlify.app/loader.js",
       },
       exposes: {},
       shared: {
