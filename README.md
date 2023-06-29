@@ -1,6 +1,7 @@
 ## Cat-alogue
 
 😎 Using **Module Federation**.
+Comes from `create-mf-app`
 
 ### Important checks
 

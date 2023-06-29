@@ -12,14 +12,12 @@ const Image = ({ className, name, description, image })=> {
     const yRotation = 30 * (layerX - width/2) / width;
     const transform = `perspective(500px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
     poster.style.transform = transform;
-    caption.style.transform = transform;
   }
 
   const handleMouseOut = ()=> {
     const poster = document.getElementById('poster');
     const transform = `perspective(500px) scale(1) rotateX(0deg) rotateY(0deg)`;
     poster.style.transform = transform;
-    caption.style.transform = transform;
   }
 
   return (
